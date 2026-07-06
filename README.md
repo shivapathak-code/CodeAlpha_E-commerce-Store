@@ -4,7 +4,7 @@ A full-stack **E-Commerce Store** built with **HTML, CSS, JavaScript, Node.js, E
 
 
 🌐 Live Demo
-Live Application: (https://estore11.netlify.app/)
+Live Application: (https://code-alpha-e-commerce-store-one.vercel.app/)
 
 📂 GitHub Repository
 Repository: https://github.com/shivapathak-code/CodeAlpha_E-commerce-Store

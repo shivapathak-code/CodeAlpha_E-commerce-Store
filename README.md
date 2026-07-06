@@ -2,6 +2,12 @@
 
 A full-stack **E-Commerce Store** built with **HTML, CSS, JavaScript, Node.js, Express.js, MongoDB, and JWT Authentication**. This project provides a modern shopping experience with user authentication, cart management, checkout, and order tracking.
 
+
+🌐 Live Demo
+Live Application: (https://code-alpha-e-commerce-store-one.vercel.app/)
+
+📂 GitHub Repository
+Repository: https://github.com/shivapathak-code/CodeAlpha_E-commerce-Store
 ## 🚀 Features
 
 * 🔐 User Registration & Login (JWT Authentication)

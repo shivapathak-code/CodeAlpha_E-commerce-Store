@@ -15,7 +15,7 @@ const state = {
     isLoadingProducts: false
 };
 
-const API_BASE_URL = "http://localhost:5000/api";
+const API_BASE_URL = "https://codealpha-e-commerce-store-xt8m.onrender.com/api";
 
 const savedUser = JSON.parse(localStorage.getItem("user"));
 

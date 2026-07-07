@@ -17,6 +17,28 @@ const state = {
 
 const API_BASE_URL = "https://codealpha-e-commerce-store-xt8m.onrender.com/api";
 
+async function fetchWithRetry(url, options = {}, retries = 5) {
+    for (let i = 0; i < retries; i++) {
+        try {
+            const response = await fetch(url, options);
+
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
+
+            return await response.json();
+
+        } catch (error) {
+
+            if (i < retries - 1) {
+                showToast("Server is waking up... Please wait.", "info");
+                await new Promise(resolve => setTimeout(resolve, 3000));
+            } else {
+                throw error;
+            }
+        }
+    }
+}
 const savedUser = JSON.parse(localStorage.getItem("user"));
 
 if (savedUser) {
@@ -31,21 +53,16 @@ async function loadProductsFromAPI() {
     try {
         state.isLoadingProducts = true;
         console.log("Loading products from API...");
-        
-        const response = await fetch(`${API_BASE_URL}/products`);
-        
-        if (!response.ok) {
-            throw new Error(`Failed to load products: ${response.statusText}`);
-        }
-        
-        const products = await response.json();
+
+        const products = await fetchWithRetry(`${API_BASE_URL}/products`);
+
         console.log("Products loaded from API:", products);
-        
+
         state.products = products;
         state.filteredProducts = products;
-        
+
         console.log("State products updated with MongoDB data");
-        
+
     } catch (error) {
         console.error("Error loading products:", error);
         showToast("Failed to load products. Please refresh the page.", "error");
@@ -831,14 +848,14 @@ function renderCheckoutView() {
 
         // Refresh user's orders
         if (state.currentUser) {
-            const ordersResponse = await fetch(`${API_BASE_URL}/orders`, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`
-                }
-            });
+            const orders = await fetchWithRetry(`${API_BASE_URL}/orders`, {
+    headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+    }
+});
 
-            if (ordersResponse.ok) {
-                state.orders = await ordersResponse.json();
+            if (orders.ok) {
+                state.orders = await orders.json();
                 console.log("Orders refreshed:", state.orders);
             }
         }

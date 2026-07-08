@@ -1023,7 +1023,7 @@ async function handleRegisterSubmit(e) {
     try {
 
         const response = await fetch(
-            "http://localhost:5000/api/auth/register",
+    `${API_BASE_URL}/auth/register`,
             {
                 method: "POST",
                 headers: {
@@ -1072,9 +1072,8 @@ async function handleLoginSubmit(e) {
 
     try {
 
-        const response =
-        await fetch(
-        "http://localhost:5000/api/auth/login",
+        const response = await fetch(
+    `${API_BASE_URL}/auth/login`,
         {
             method: "POST",
 
@@ -1114,7 +1113,7 @@ async function handleLoginSubmit(e) {
         state.currentUser =
         data.user;
         const orderResponse = await fetch(
-    "http://localhost:5000/api/orders",
+    `${API_BASE_URL}/orders`,
     {
         headers: {
             Authorization: `Bearer ${data.token}`

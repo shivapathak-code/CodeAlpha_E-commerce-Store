@@ -141,35 +141,6 @@ in your browser.
 
 ---
 
-## 📸 Screenshots
-
-Add screenshots inside a folder named **screenshots**.
-
-Example:
-
-```
-screenshots/
-│── home.png
-│── product.png
-│── cart.png
-│── checkout.png
-│── orders.png
-```
-
-Then include them like this:
-
-```markdown
-## Home Page
-
-![Home](screenshots/home.png)
-
-## Product Details
-
-![Product](screenshots/product.png)
-```
-
----
-
 ## 📌 API Endpoints
 
 ### Authentication

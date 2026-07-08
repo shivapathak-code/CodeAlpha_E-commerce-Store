@@ -3,6 +3,9 @@
 A full-stack **E-Commerce Store** built with **HTML, CSS, JavaScript, Node.js, Express.js, MongoDB, and JWT Authentication**. This project provides a modern shopping experience with user authentication, cart management, checkout, and order tracking.
 
 
+🌐 Live Demo
+Live Application: (https://codealpha-e-commerce-store-xt8m.onrender.com/)
+
 📂 GitHub Repository
 Repository: https://github.com/shivapathak-code/CodeAlpha_E-commerce-Store
 ## 🚀 Features

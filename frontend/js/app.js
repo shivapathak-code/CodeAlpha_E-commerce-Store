@@ -15,7 +15,7 @@ const state = {
     isLoadingProducts: false
 };
 
-const API_BASE_URL = "https://codealpha-e-commerce-store-xt8m.onrender.com/api";
+const API_BASE_URL = "/api";
 
 async function fetchWithRetry(url, options = {}, retries = 5) {
     for (let i = 0; i < retries; i++) {
@@ -848,7 +848,7 @@ function renderCheckoutView() {
 
         // Refresh user's orders
         if (state.currentUser) {
-            const orders = await fetchWithRetry(`${API_BASE_URL}/orders`, {
+            const orders = await fetch(`${API_BASE_URL}/orders`, {
     headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`
     }
@@ -864,7 +864,8 @@ function renderCheckoutView() {
         state.cart = [];
         saveCartState();
         renderCart();
-
+        
+        renderProfileView();
         // Switch to Success page
         renderSuccessView(orderData);
         switchView("success");
@@ -908,6 +909,9 @@ function renderSuccessView(order) {
 
 // User Profile & Order History Rendering
 function renderProfileView() {
+
+    console.log("Profile View Orders:", state.orders);
+console.log("Profile View Orders Length:", state.orders.length);
     const container = document.getElementById("profile-view");
     if (!container) return;
     
@@ -1120,6 +1124,9 @@ async function handleLoginSubmit(e) {
 
 if (orderResponse.ok) {
     state.orders = await orderResponse.json();
+
+    console.log("Orders after login:", state.orders);
+    console.log("Orders length:", state.orders.length);
 }
 
         updateNavUI();
@@ -1153,7 +1160,7 @@ function handleLogout() {
     localStorage.removeItem("store_cart");
 
     state.currentUser = null;
-    state.orders = [];
+     [];
     state.cart = [];
 
     updateNavUI();
